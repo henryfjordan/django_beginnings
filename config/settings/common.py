@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'django_beginnings.users',  # custom users app
     # Your stuff: custom apps go here
+    'django_beginnings.blog',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
