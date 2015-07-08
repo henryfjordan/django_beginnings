@@ -7,7 +7,6 @@ This is a site built to learn to use Django. I started with a cookiecutter djang
 
 
 *** EVERYTHING BELOW THIS LINE IS LEFT FOR FUTURE REFERENCE ***
-===============================================================
 
 LICENSE: BSD
 
