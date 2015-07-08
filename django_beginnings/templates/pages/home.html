@@ -1,1 +1,7 @@
 {% extends "base.html" %}
+
+{% block content %}
+    <p>Welcome to my new site! Enjoy yourself!</p>
+
+    <p>Maybe check out the <a href="{% url 'blog:list' %}">Blog!</a> </p>
+{% endblock %}

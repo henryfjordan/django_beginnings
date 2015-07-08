@@ -1,8 +1,13 @@
 djangotut
 ==============================
 
-Just a tester project for zefr
+This is a site built to learn to use Django. I started with a cookiecutter django template and added the blog functionality.
 
+
+
+
+*** EVERYTHING BELOW THIS LINE IS LEFT FOR FUTURE REFERENCE ***
+===============================================================
 
 LICENSE: BSD
 
