@@ -15,4 +15,10 @@ class BlogPost(models.Model):
 
 class BlogComment(models.Model):
 
-    author
+    author = models.ForeignKey(User)
+    blogpost = models.ForeignKey(BlogPost)
+    comment = models.CharField(max_length=140)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment

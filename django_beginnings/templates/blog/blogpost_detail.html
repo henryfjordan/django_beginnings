@@ -6,5 +6,25 @@
     <p>
     {{ object.text }}
     </p>
-    <i>{{ object.date_posted }}</i>
+    <p><i>{{ object.date_posted }}</i></p>
+    <br /><br />
+
+    {% block commentform %}
+        <form action="/blog/create/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit Comment" />
+        </form>
+    {% endblock %}
+
+    {% block comments %}
+        <p>{{ object.blogcomment_set.count }} comments:</p>
+        {% for comment in object.blogcomment_set.all %}
+            <p>{{ comment.comment }} - <b>{{ comment.author }}</b> - <i>{{ comment.date_posted }}</i></p>
+        {% endfor %}
+    {% endblock %}
+
+
+
+    <p> <a href="{% url 'blog:list' %}"> &lt;----- Back! </a> </p>
 {% endblock %}
