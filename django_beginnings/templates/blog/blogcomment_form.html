@@ -1,0 +1,9 @@
+{% extends "blogpost_detail.html" %}
+
+{% block commentform %}
+<form action="/blog/create/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit Comment" />
+</form>
+{% endblock %}

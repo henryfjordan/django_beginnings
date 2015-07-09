@@ -10,7 +10,7 @@
     <br /><br />
 
     {% block commentform %}
-        <form action="/blog/create/" method="post">
+        <form action={{ request.path }} method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Submit Comment" />
