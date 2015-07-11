@@ -6,15 +6,30 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from braces.views import LoginRequiredMixin
 
+
 from .forms import UserForm
 from .models import User
 
 
+import tweepy
+from allauth.socialaccount.models import SocialAccount
+
+
+
 class UserDetailView(LoginRequiredMixin, DetailView):
+
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_twitter_follower_count(self):
+        auth = tweepy.OAuthHandler('08OKIFS5pnBFYULL8duPsTvkd', 'QvoNYSyTWsbzJLZiBFiUDn7U2rzb4ms2qLjfDLBmyl7So7PYa9')
+        api = tweepy.API(auth)
+        twitter_uid = SocialAccount.objects.filter(user_id=self.id, provider='twitter').first()
+        return api.get_user(twitter_uid).followers_count
+
+
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):

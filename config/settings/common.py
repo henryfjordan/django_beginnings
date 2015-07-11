@@ -39,6 +39,14 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+
+    # allauth specific providers
+    # REMINDER: Add socialaccount to socialaccount_providers below
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.instagram',
+
 )
 
 # Apps specific for this project go here.
@@ -141,6 +149,7 @@ TEMPLATES = [
             str(APPS_DIR.path('templates').path('blog')),
 
         ],
+        #'APP_DIRS' : True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             'debug': DEBUG,
@@ -162,7 +171,9 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+
                 # Your stuff: custom template context processors go here
+
             ],
         },
     },
@@ -260,3 +271,22 @@ LOGGING = {
 }
 
 # Your common stuff: Below this line define 3rd party library settings
+
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {
+
+    'facebook':
+       {'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+        'LOCALE_FUNC': lambda request: 'en_US',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'
+        },
+
+    'twitter': { },
+
+    'instagram': { },
+
+}

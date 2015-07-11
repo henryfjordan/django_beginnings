@@ -21,6 +21,25 @@
     <a class="btn btn-primary" href="{% url 'users:update' %}">My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
+
+    <br/><br/>
+    {% load socialaccount %}
+    <a class="btn btn-primary" href="{% provider_login_url "facebook" process="connect" %}">Connect your Facebook</a>
+    <a class="btn btn-primary" href="{% provider_login_url "twitter" process="connect" %}">Connect your Twitter</a>
+    <a class="btn btn-primary" href="{% provider_login_url "instagram" process="connect" %}">Connect your Instagram</a>
+
+    <br/><br/>
+
+    <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" />
+    <img src="{{user.socialaccount_set.all.1.get_avatar_url}}" />
+    <img src="{{user.socialaccount_set.all.2.get_avatar_url}}" />
+
+    <br /><br/>
+
+     Twitter Followers: {{ user.twitter_followers }}
+
+    <br /><br/>
+
   </div>
 
 </div>

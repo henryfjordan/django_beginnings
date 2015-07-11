@@ -17,6 +17,7 @@
         </form>
     {% endblock %}
 
+    <br />
     {% block comments %}
         <p>{{ object.blogcomment_set.count }} comments:</p>
         {% for comment in object.blogcomment_set.all %}

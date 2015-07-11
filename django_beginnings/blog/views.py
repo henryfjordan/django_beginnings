@@ -12,8 +12,6 @@ from django_beginnings.users.models import User
 class BlogList(ListView):
     model = BlogPost
 
-    def get_queryset(self):
-        return BlogPost.objects.all()
 
 class BlogDetail(LoginRequiredMixin, DetailView):
     model = BlogPost
