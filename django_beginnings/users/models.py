@@ -10,5 +10,9 @@ class User(AbstractUser):
     def __unicode__(self):
         return self.username
 
-    twitter_followers = models.BigIntegerField(default=0);
+    twitter_followers = models.BigIntegerField(default=0)
+    instagram_followers = models.BigIntegerField(default=0)
+
+    def get_total_followers(self):
+        return self.twitter_followers + self.instagram_followers
 

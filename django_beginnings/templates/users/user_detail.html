@@ -30,13 +30,17 @@
 
     <br/><br/>
 
-    <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" />
-    <img src="{{user.socialaccount_set.all.1.get_avatar_url}}" />
-    <img src="{{user.socialaccount_set.all.2.get_avatar_url}}" />
+    <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" height="100" width="100" />
+    <img src="{{user.socialaccount_set.all.1.get_avatar_url}}" height="100" width="100" />
+    <img src="{{user.socialaccount_set.all.2.get_avatar_url}}" height="100" width="100" />
 
     <br /><br/>
 
-     Twitter Followers: {{ user.twitter_followers }}
+    Twitter Followers: {{ user.twitter_followers }} <br/>
+    Instagram Followers: {{ user.instagram_followers }}<br/>
+    Total Followers: {{ user.get_total_followers }} <br/>
+
+
 
     <br /><br/>
 

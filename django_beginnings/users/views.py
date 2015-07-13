@@ -12,8 +12,22 @@ from .models import User
 
 
 import tweepy
+from instagram.client import InstagramAPI
 from allauth.socialaccount.models import SocialAccount
 
+def get_twitter_follower_count(user):
+    auth = tweepy.OAuthHandler('08OKIFS5pnBFYULL8duPsTvkd', 'QvoNYSyTWsbzJLZiBFiUDn7U2rzb4ms2qLjfDLBmyl7So7PYa9')
+    api = tweepy.API(auth)
+    twitter_uid = SocialAccount.objects.filter(user_id=user.id, provider='twitter')[0].uid
+    user.twitter_followers = api.get_user(twitter_uid).followers_count
+    user.save()
+
+def get_instagram_follower_count(user):
+    api = InstagramAPI(client_id='13245ce01c854900a3a964b9bdd964c5', client_secret='ed11480527dc4f6d959bc2fde47d25da')
+    instagram_uid = SocialAccount.objects.filter(user_id=user.id, provider='instagram')[0].uid
+    print(instagram_uid)
+    user.instagram_followers = api.user(instagram_uid).counts['followed_by'] 
+    user.save()
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -23,14 +37,10 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
-    def get_twitter_follower_count(self):
-        auth = tweepy.OAuthHandler('08OKIFS5pnBFYULL8duPsTvkd', 'QvoNYSyTWsbzJLZiBFiUDn7U2rzb4ms2qLjfDLBmyl7So7PYa9')
-        api = tweepy.API(auth)
-        twitter_uid = SocialAccount.objects.filter(user_id=self.id, provider='twitter').first()
-        return api.get_user(twitter_uid).followers_count
-
-
-
+    def get(self, request, *args, **kwargs):
+        get_twitter_follower_count(self.get_object())
+        get_instagram_follower_count(self.get_object())
+        return super(UserDetailView, self).get(request, *args, **kwargs)
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
