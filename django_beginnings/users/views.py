@@ -25,8 +25,7 @@ def get_twitter_follower_count(user):
 def get_instagram_follower_count(user):
     api = InstagramAPI(client_id='13245ce01c854900a3a964b9bdd964c5', client_secret='ed11480527dc4f6d959bc2fde47d25da')
     instagram_uid = SocialAccount.objects.filter(user_id=user.id, provider='instagram')[0].uid
-    print(instagram_uid)
-    user.instagram_followers = api.user(instagram_uid).counts['followed_by'] 
+    user.instagram_followers = api.user(instagram_uid).counts['followed_by']
     user.save()
 
 
