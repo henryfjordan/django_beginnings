@@ -28,6 +28,8 @@
     <a class="btn btn-primary" href="{% provider_login_url "twitter" process="connect" %}">Connect your Twitter</a>
     <a class="btn btn-primary" href="{% provider_login_url "instagram" process="connect" %}">Connect your Instagram</a>
 
+    <!-- End Action buttons -->
+{% endif %}
     <br/><br/>
 
     <img src="{{user.socialaccount_set.all.0.get_avatar_url}}" height="100" width="100" />
@@ -47,8 +49,6 @@
   </div>
 
 </div>
-<!-- End Action buttons -->
-{% endif %}
 
 
 </div>

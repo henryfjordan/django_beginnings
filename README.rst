@@ -1,7 +1,7 @@
 djangotut
 ==============================
 
-This is a site built to learn to use Django. I started with a cookiecutter django template and added the blog functionality.
+This is a site built to learn to use Django. I started with a cookiecutter django template and added the blog functionality. I also added social media account integration.
 
 
 

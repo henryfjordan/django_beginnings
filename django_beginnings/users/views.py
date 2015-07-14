@@ -18,15 +18,17 @@ from allauth.socialaccount.models import SocialAccount
 def get_twitter_follower_count(user):
     auth = tweepy.OAuthHandler('08OKIFS5pnBFYULL8duPsTvkd', 'QvoNYSyTWsbzJLZiBFiUDn7U2rzb4ms2qLjfDLBmyl7So7PYa9')
     api = tweepy.API(auth)
-    twitter_uid = SocialAccount.objects.filter(user_id=user.id, provider='twitter')[0].uid
-    user.twitter_followers = api.get_user(twitter_uid).followers_count
-    user.save()
+    twitter_uid_list = SocialAccount.objects.filter(user_id=user.id, provider='twitter')
+    if(len(twitter_uid_list) > 0):
+        user.twitter_followers = api.get_user(twitter_uid_list[0].uid).followers_count
+        user.save()
 
 def get_instagram_follower_count(user):
     api = InstagramAPI(client_id='13245ce01c854900a3a964b9bdd964c5', client_secret='ed11480527dc4f6d959bc2fde47d25da')
-    instagram_uid = SocialAccount.objects.filter(user_id=user.id, provider='instagram')[0].uid
-    user.instagram_followers = api.user(instagram_uid).counts['followed_by']
-    user.save()
+    instagram_uid_list = SocialAccount.objects.filter(user_id=user.id, provider='instagram')
+    if(len(instagram_uid_list) > 0):
+        user.instagram_followers = api.user(instagram_uid_list[0].uid).counts['followed_by']
+        user.save()
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
